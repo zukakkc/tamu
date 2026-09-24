@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>თამუსთვის ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+}
+
+body{
+    overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:
+        radial-gradient(circle at 50% 45%,#fff 0%,#fff7fa 48%,#ffeef4 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* =========================
+   BACKGROUND HEARTS
+========================= */
+
+.hearts{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.bg-heart{
+    position:absolute;
+    color:rgba(255,80,130,.18);
+    font-size:30px;
+    animation:floatHeart linear infinite;
+}
+
+.h1{left:5%;font-size:28px;animation-duration:12s;animation-delay:-2s;}
+.h2{left:17%;font-size:42px;animation-duration:15s;animation-delay:-7s;}
+.h3{left:31%;font-size:25px;animation-duration:11s;animation-delay:-4s;}
+.h4{left:48%;font-size:35px;animation-duration:16s;animation-delay:-10s;}
+.h5{left:64%;font-size:24px;animation-duration:13s;animation-delay:-5s;}
+.h6{left:78%;font-size:45px;animation-duration:17s;animation-delay:-12s;}
+.h7{left:91%;font-size:27px;animation-duration:12s;animation-delay:-8s;}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(110vh) rotate(-15deg);
+        opacity:0;
+    }
+    15%{
+        opacity:1;
+    }
+    85%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-20vh) rotate(20deg);
+        opacity:0;
+    }
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.scene{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+}
+
+/* =========================
+   BIG HEART
+========================= */
+
+.big-heart{
+    width:210px;
+    height:210px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    user-select:none;
+    font-size:150px;
+    filter:
+        drop-shadow(0 18px 25px rgba(220,0,45,.20))
+        drop-shadow(0 0 30px rgba(255,80,110,.12));
+    animation:heartBeat 1.7s ease-in-out infinite;
+    transition:transform .25s ease,opacity .3s ease;
+}
+
+.big-heart:active{
+    transform:scale(.90);
+}
+
+@keyframes heartBeat{
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.07);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.045);}
+    60%{transform:scale(1);}
+}
+
+/* =========================
+   ENVELOPE
+========================= */
+
+.envelope-wrap{
+    position:absolute;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    animation:envelopeAppear .65s cubic-bezier(.2,.8,.2,1);
+}
+
+.envelope{
+    width:310px;
+    height:205px;
+    position:relative;
+    cursor:pointer;
+    user-select:none;
+    filter:drop-shadow(0 18px 35px rgba(80,20,40,.16));
+    transition:transform .25s ease;
+}
+
+.envelope:active{
+    transform:scale(.95);
+}
+
+.envelope-body{
+    position:absolute;
+    inset:0;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+/* bottom folds */
+.envelope-body:before{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:0;
+    border-left:155px solid transparent;
+    border-right:155px solid transparent;
+    border-bottom:105px solid #f6f6f6;
+}
+
+/* top flap */
+.flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:155px solid transparent;
+    border-right:155px solid transparent;
+    border-top:105px solid #eeeeee;
+    z-index:3;
+}
+
+/* little red heart */
+.envelope-heart{
+    position:absolute;
+    z-index:5;
+    left:50%;
+    top:52%;
+    transform:translate(-50%,-50%);
+    font-size:46px;
+    filter:drop-shadow(0 4px 8px rgba(210,0,40,.18));
+    animation:tinyHeart 1.5s ease-in-out infinite;
+}
+
+@keyframes tinyHeart{
+    0%,100%{transform:translate(-50%,-50%) scale(1);}
+    50%{transform:translate(-50%,-50%) scale(1.12);}
+}
+
+.envelope-hint{
+    margin-top:22px;
+    color:#b48a96;
+    font-size:16px;
+    letter-spacing:.2px;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    position:absolute;
+    display:none;
+    width:90%;
+    max-width:420px;
+    text-align:center;
+    animation:messageAppear .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.message-heart{
+    font-size:75px;
+    margin-bottom:15px;
+    filter:drop-shadow(0 10px 18px rgba(210,0,40,.15));
+    animation:heartBeat 1.7s ease-in-out infinite;
+}
+
+.message-text{
+    font-size:42px;
+    line-height:1.2;
+    font-weight:700;
+    color:#d90035;
+    letter-spacing:-1px;
+    text-shadow:0 4px 15px rgba(200,0,50,.10);
+}
+
+.message-sub{
+    margin-top:18px;
+    font-size:17px;
+    color:#aa7d88;
+}
+
+@keyframes envelopeAppear{
+    from{
+        opacity:0;
+        transform:translateY(35px) scale(.72);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes messageAppear{
+    from{
+        opacity:0;
+        transform:scale(.75) translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:430px){
+
+    .big-heart{
+        font-size:135px;
+        width:190px;
+        height:190px;
+    }
+
+    .envelope{
+        width:285px;
+        height:190px;
+    }
+
+    .flap{
+        border-left-width:142px;
+        border-right-width:142px;
+        border-top-width:98px;
+    }
+
+    .envelope-body:before{
+        border-left-width:142px;
+        border-right-width:142px;
+        border-bottom-width:98px;
+    }
+
+    .message-text{
+        font-size:36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts">
+    <div class="bg-heart h1">♡</div>
+    <div class="bg-heart h2">♡</div>
+    <div class="bg-heart h3">♡</div>
+    <div class="bg-heart h4">♡</div>
+    <div class="bg-heart h5">♡</div>
+    <div class="bg-heart h6">♡</div>
+    <div class="bg-heart h7">♡</div>
+</div>
+
+<div class="scene">
+
+    <!-- FIRST SCREEN -->
+    <div id="bigHeart"
+         class="big-heart"
+         onclick="openEnvelope()"
+         aria-label="გული">
+        ❤️
+    </div>
+
+    <!-- ENVELOPE -->
+    <div id="envelopeWrap" class="envelope-wrap">
+
+        <div class="envelope" onclick="openLetter()">
+
+            <div class="envelope-body"></div>
+
+            <div class="flap"></div>
+
+            <div class="envelope-heart">
+                ❤️
+            </div>
+
+        </div>
+
+        <div class="envelope-hint">
+            ერთი პატარა წერილია შენთვის...
+        </div>
+
+    </div>
+
+    <!-- FINAL MESSAGE -->
+    <div id="message" class="message">
+
+        <div class="message-heart">
+            ❤️
+        </div>
+
+        <div class="message-text">
+            მიყვარხარ თამუ
+        </div>
+
+        <div class="message-sub">
+            ძალიან, ძალიან ❤️
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function openEnvelope(){
+
+    const heart = document.getElementById("bigHeart");
+    const envelope = document.getElementById("envelopeWrap");
+
+    heart.style.opacity = "0";
+    heart.style.transform = "scale(.65)";
+
+    setTimeout(function(){
+        heart.style.display = "none";
+        envelope.style.display = "flex";
+    },300);
+}
+
+
+function openLetter(){
+
+    const envelope = document.getElementById("envelopeWrap");
+    const message = document.getElementById("message");
+
+    envelope.style.opacity = "0";
+    envelope.style.transform = "scale(.75)";
+
+    setTimeout(function(){
+        envelope.style.display = "none";
+        message.style.display = "block";
+    },300);
+}
+
+</script>
+
+</body>
+</html>
